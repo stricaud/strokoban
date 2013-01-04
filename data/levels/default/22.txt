@@ -1,0 +1,9 @@
+  XXXXXXX
+  X  .  X
+ XXX#X  X
+ X  . . X
+XXX#X# XX
+X  . . .X
+X #X#X# X
+X  * X  X
+XXXXXXXXX

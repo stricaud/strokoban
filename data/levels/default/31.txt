@@ -1,0 +1,8 @@
+ XXXXX 
+ X   X 
+XX X XX
+X # # X
+X.. ..X
+X #X# X
+XX * XX
+ XXXXX 

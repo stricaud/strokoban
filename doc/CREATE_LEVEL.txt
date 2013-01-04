@@ -1,0 +1,6 @@
+# Box
+% Box on a target
+. Target
+X Wall
+* Buddy
+$ Buddy on a target
