@@ -26,7 +26,12 @@ class GameWidget(QWidget):
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
-            print("Escape")
+            # Undo!
+            self.game_layout.history_set_objects_matrix_from_last()
+            self.refresh()
+            # print("Escape")
+            return True
+
         if event.key() == Qt.Key_Left:
             # print("Left")
             self.game_layout.move_left()
@@ -43,6 +48,8 @@ class GameWidget(QWidget):
             # print("Down")
             self.game_layout.move_down()
             self.refresh()
+
+        self.game_layout.history_add()
 
         if self.game_layout.has_won():
             print("YOU WIN!")

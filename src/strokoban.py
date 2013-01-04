@@ -15,6 +15,7 @@ print("Levels list:")
 print(strokoban_levels.get_names())
 
 use_level = "default"
+# use_level = "originalng"
 
 error = strokoban_levels.check(use_level)
 if error is not None:

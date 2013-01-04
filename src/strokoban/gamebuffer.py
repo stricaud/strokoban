@@ -20,10 +20,28 @@ class GameBuffer:
 
         self.targets_number = self.get_targets_number(level_buffer)
         self.objects_matrix = level_buffer.split('\n')
+        self.objects_matrix_history_tracking = []
         self.buddy_x = 0
         self.buddy_y = 0
         self.max_x = 0
         self.max_y = 0
+
+    def history_add(self):
+        matrix = list(self.objects_matrix)
+        self.objects_matrix_history_tracking.append(matrix)
+        # print(">>>")
+        # for obj in self.objects_matrix_history_tracking:
+        #     print(str(obj))
+        # print("<<<")
+
+    def history_set_objects_matrix_from_last(self):
+        try:
+            self.objects_matrix_history_tracking.pop() # We remove the last
+            self.objects_matrix = self.objects_matrix_history_tracking[-1]
+            return True
+        except:
+            # We don't care, but we just notify that is no more history if one want to graphicaly do something
+            return False
 
     def get_targets_number(self, level_buffer):
         return level_buffer.count('#') + level_buffer.count('%')
@@ -42,7 +60,6 @@ class GameBuffer:
         game_layout = QGridLayout()
 
         # print("[%s]" % (self.objects_matrix))
-
         y_pos = 0
         for line in self.objects_matrix:
             x_pos = 0
@@ -127,12 +144,8 @@ class GameBuffer:
         return self.objects_matrix[self.buddy_y + 2][self.buddy_x]
 
     def can_move(self, on, onn): # on = object_next ; onn = object_next_next
-        if on == '#':
-            if onn == '#' or onn == 'X' or onn == 'E':
-                return False
-
-        if on == '%':
-            if onn == '#' or onn == 'X' or onn == 'E':
+        if on == '%' or on == '#':
+            if onn == '#' or onn == 'X' or onn == 'E' or onn == '%':
                 return False
 
         if on == 'X':
